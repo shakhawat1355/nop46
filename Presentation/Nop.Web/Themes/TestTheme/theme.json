@@ -1,0 +1,7 @@
+﻿{
+  "SystemName": "TestTheme",
+  "FriendlyName": "Test- Theme",
+  "SupportRTL": true,
+  "PreviewImageUrl": "~/Themes/TestTheme/preview.jpg",
+  "PreviewText": "The 'TestTheme' site theme"
+}

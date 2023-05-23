@@ -54,7 +54,7 @@
 
 <ul class="top-menu notmobile">
   
-    <li><a href="https://www.google.com"> link </a></li>
+   
     @await Component.InvokeAsync(typeof(WidgetViewComponent), new { widgetZone = PublicWidgetZones.HeaderMenuBefore, additionalData = Model })
     @if (Model.DisplayHomepageMenuItem)
     {
