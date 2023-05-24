@@ -176,7 +176,11 @@ namespace Nop.Web.Areas.Admin.Controllers
 
             if (ModelState.IsValid)
             {
-                var country = model.ToEntity<Country>();
+                var country = model.ToEntity<Country>(); 
+                //automappting is called
+
+
+
                 await _countryService.InsertCountryAsync(country);
 
                 //activity log

@@ -52,6 +52,8 @@
                         });
                     }
 
+                    /// ajax calls happended
+
                     $.ajax({
                         cache: false,
                         url: '@Html.Raw(Url.Action("selectshippingoption", "shoppingcart"))' + (params ? '?' + params : ''),

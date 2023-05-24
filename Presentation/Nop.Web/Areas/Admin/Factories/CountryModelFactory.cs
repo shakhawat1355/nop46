@@ -142,7 +142,9 @@ namespace Nop.Web.Areas.Admin.Factories
                 //fill in model values from the entity
                 if (model == null)
                 {
-                    model = country.ToModel<CountryModel>();
+                    model = country.ToModel<CountryModel>();// automapping is called 
+
+
                     model.NumberOfStates = (await _stateProvinceService.GetStateProvincesByCountryIdAsync(country.Id))?.Count ?? 0;
                 }
 
