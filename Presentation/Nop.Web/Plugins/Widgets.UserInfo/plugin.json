@@ -1,0 +1,11 @@
+﻿{
+  "Group": "Widgets",
+  "FriendlyName": "User Info",
+  "SystemName": "Widgets.UserInfo",
+  "Version": "1.50",
+  "SupportedVersions": [ "4.60" ],
+  "Author": "nopCommerce team",
+  "DisplayOrder": 1,
+  "FileName": "Nop.Plugin.Widgets.UserInfo.dll",
+  "Description": "This plugin allows you to change the contents of main page slider"
+}
