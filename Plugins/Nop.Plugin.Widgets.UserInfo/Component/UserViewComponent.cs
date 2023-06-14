@@ -29,8 +29,8 @@ namespace Nop.Plugin.Widgets.UserInfo.Component
         }
         public async Task<IViewComponentResult> InvokeAsync(string widgetZone, object additionalData)
         {
-            var model = new UserModel(); //await _userModelFactory.PrepareUserListModelAsync();
-            return View("~/Plugins/Widgets.UserInfo/Views/Public/PublicList.cshtml", model);
+            var model = await _userService.GetAllUsersAsync(); 
+            return View("~/Plugins/Widgets.UserInfo/Views/Public/PublicList.cshtml");
         }
     }
 }

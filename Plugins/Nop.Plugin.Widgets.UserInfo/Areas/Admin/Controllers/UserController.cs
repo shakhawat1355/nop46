@@ -4,6 +4,7 @@ using Nop.Plugin.Widgets.UserInfo.Areas.Admin.Service;
 using Nop.Plugin.Widgets.UserInfo.Domain;
 using Nop.Plugin.Widgets.UserInfo.Factory;
 using Nop.Plugin.Widgets.UserInfo.Model;
+using Nop.Services.Media;
 using Nop.Services.Plugins;
 using Nop.Services.Security;
 using Nop.Web.Framework;
@@ -24,18 +25,37 @@ namespace Nop.Plugin.Widgets.UserInfo.Admin.Controllers
 
     public class UserController : BasePluginController
     {
+        #region fields
         private readonly IPermissionService _permissionService;
         private readonly IUserModelFactory _userModelFactory;
         private readonly IUserService _userService;
+        private readonly IPictureService _pictureService;
+        #endregion
+
+
+        #region ctor
         public UserController(IPermissionService permissionService,
             IUserModelFactory userModelFactory,
-             IUserService userService
+             IUserService userService,
+             IPictureService pictureService
             )
         {
             _permissionService = permissionService;
             _userModelFactory = userModelFactory;
             _userService = userService;
+            _pictureService = pictureService;
         }
+        #endregion
+
+
+
+        public async Task UpdatePictureNamesAsync(UserModel model)
+        {
+            var picture = await _pictureService.GetPictureByIdAsync(model.PictureId);
+            if (picture != null)
+                await _pictureService.SetSeoFilenameAsync(picture.Id, await _pictureService.GetPictureSeNameAsync(model.Name));
+        }
+
         public async Task<IActionResult> Configure()
         {
             if (!await _permissionService.AuthorizeAsync(StandardPermissionProvider.ManagePlugins))
@@ -61,6 +81,7 @@ namespace Nop.Plugin.Widgets.UserInfo.Admin.Controllers
         {
 
             var obj = await _userModelFactory.PrepareUserModelAsync(model);
+          //  await UpdatePictureNamesAsync(model);
             return RedirectToAction("Index", "User");
         }
 
@@ -71,6 +92,22 @@ namespace Nop.Plugin.Widgets.UserInfo.Admin.Controllers
             return RedirectToAction("Index", "User");
 
         }
+
+        [HttpPost]
+        public virtual async Task<IActionResult> DeleteSelected(ICollection<int> selectedIds)
+        {
+            if (!await _permissionService.AuthorizeAsync(StandardPermissionProvider.ManageManufacturers))
+                return AccessDeniedView();
+
+            if (selectedIds == null || selectedIds.Count == 0)
+                return NoContent();
+
+            var users = await _userService.GetUsersByIdsAsync(selectedIds.ToArray());
+            await _userService.DeleteUsersAsync(users);
+
+            return Json(new { Result = true });
+        }
+
 
         public async Task<IActionResult> Edit(int id)
         {
@@ -123,29 +160,16 @@ namespace Nop.Plugin.Widgets.UserInfo.Admin.Controllers
             return Json(model);
         }
 
-        [HttpPost]
-        public virtual async Task<IActionResult> DeleteSelected(ICollection<int> selectedIds)
+
+        public async Task<IActionResult> UserList()
         {
-            if (!await _permissionService.AuthorizeAsync(StandardPermissionProvider.ManageManufacturers))
+            if (!await _permissionService.AuthorizeAsync(StandardPermissionProvider.ManagePlugins))
                 return AccessDeniedView();
+             var model = await _userService.GetAllUsersAsync();
 
-            if (selectedIds == null || selectedIds.Count == 0)
-                return NoContent();
-
-            var users = await _userService.GetUsersByIdsAsync(selectedIds.ToArray());
-            await _userService.DeleteUsersAsync(users);
-
-            //var locale = await _localizationService.GetResourceAsync("ActivityLog.DeleteManufacturer");
-            //foreach (var manufacturer in manufacturers)
-            //{
-            //    //activity log
-            //    await _customerActivityService.InsertActivityAsync("DeleteManufacturer", string.Format(locale, manufacturer.Name), manufacturer);
-            //}
-
-            return Json(new { Result = true });
+           
+            return View("~/Plugins/Widgets.UserInfo/Views/Public/UserList.cshtml", model);
         }
-
-
 
 
 

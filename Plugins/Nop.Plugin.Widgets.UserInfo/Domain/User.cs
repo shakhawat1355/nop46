@@ -9,5 +9,7 @@ namespace Nop.Plugin.Widgets.UserInfo.Domain
         public string Gender { get; set; }
         public string Phone { get; set; }
         public DateTime CreationDate { get; set; }
+
+        public int PictureId { get; set; }
     }
 }

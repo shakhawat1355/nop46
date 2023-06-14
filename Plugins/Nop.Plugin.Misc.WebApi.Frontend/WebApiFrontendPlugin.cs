@@ -82,6 +82,7 @@ namespace Nop.Plugin.Misc.WebApi.Frontend
                 RouteValues = new RouteValueDictionary { { "area", AreaNames.Admin } }
             });
         }
+   
 
         /// <summary>
         /// Uninstall the plugin

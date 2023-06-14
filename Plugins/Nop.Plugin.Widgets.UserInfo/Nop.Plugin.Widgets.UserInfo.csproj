@@ -16,6 +16,7 @@
 	  <None Remove="Views\Configure.cshtml" />
 	  <None Remove="Views\List.cshtml" />
 	  <None Remove="Views\Public\PublicList.cshtml" />
+	  <None Remove="Views\Public\UserList.cshtml" />
 	  <None Remove="Views\_ViewImports.cshtml" />
 	</ItemGroup>
 
@@ -34,6 +35,9 @@
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
 	  <Content Include="Views\Configure.cshtml">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Include="Views\Public\UserList.cshtml">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
 	  <Content Include="Views\Public\PublicList.cshtml">
@@ -61,6 +65,10 @@
 	  <None Update="Areas\Admin\Views\_ViewStart.cshtml">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Factory\" />
 	</ItemGroup>
 
 	<!-- This target execute after "Build" target -->

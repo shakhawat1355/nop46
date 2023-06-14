@@ -22,7 +22,9 @@ namespace Nop.Plugin.Widgets.UserInfo
         private readonly IWebHelper _webHelper;
         private readonly IPermissionService _permissionService;
         private readonly ILocalizationService _localizationService;
-        public UserInfoPlugin(IWebHelper webHelper, IPermissionService permissionService, ILocalizationService localizationService)
+        public UserInfoPlugin(IWebHelper webHelper,
+            IPermissionService permissionService, 
+            ILocalizationService localizationService)
         {
             _webHelper = webHelper;
             _permissionService = permissionService;
@@ -36,7 +38,7 @@ namespace Nop.Plugin.Widgets.UserInfo
 
         public Task<IList<string>> GetWidgetZonesAsync()
         {
-            return Task.FromResult<IList<string>>(new List<string> { PublicWidgetZones.HomepageBeforeNews });
+           return Task.FromResult<IList<string>>(new List<string> { PublicWidgetZones.AccountNavigationAfter });
         }
 
         public async Task ManageSiteMapAsync(SiteMapNode rootNode)
@@ -44,28 +46,25 @@ namespace Nop.Plugin.Widgets.UserInfo
             if (!await _permissionService.AuthorizeAsync(StandardPermissionProvider.ManagePlugins))
                 return;
 
-            var config = rootNode.ChildNodes.FirstOrDefault(node => node.SystemName.Equals("Configuration"));
-            if (config == null)
-                return;
-
-            var plugins = config.ChildNodes.FirstOrDefault(node => node.SystemName.Equals("Local plugins"));
-
-            if (plugins == null)
-                return;
-
-            var index = config.ChildNodes.IndexOf(plugins);
-
-            if (index < 0)
-                return;
-
-            config.ChildNodes.Insert(index, new SiteMapNode
+            var menuItem = new SiteMapNode()
             {
-                Title = await _localizationService.GetResourceAsync("Plugins.Widgets.Crud.IndexPageTitle"),
-                Url = $"{_webHelper.GetStoreLocation()}Admin/User/List",
+                Title = "Users",
                 Visible = true,
                 IconClass = "far fa-circle",
                 SystemName = "UserInfo"
-            });
+            };
+            rootNode.ChildNodes.Add(menuItem);
+
+            var pluginNode = rootNode.ChildNodes.FirstOrDefault(x => x.SystemName == "UserInfo");
+           pluginNode.ChildNodes.Add(new SiteMapNode()
+           {
+               Title = "List",
+                Url = $"{_webHelper.GetStoreLocation()}Admin/User/List",
+               Visible = true,
+               IconClass = "far fa-dot-circle",
+               SystemName = "UserList"
+           });
+
         }
         public override async Task InstallAsync()
         {
@@ -79,17 +78,19 @@ namespace Nop.Plugin.Widgets.UserInfo
                 ["Plugins.Widgets.Crud.Name"] = "Name",
                 ["Plugins.Widgets.Crud.Name.Hint"] = "Enter user's name",
                 ["Plugins.Widgets.Crud.DateOfBirth"] = "Date of birth",
-                ["Plugins.Widgets.Crud.DateOfBirth.Hint"] = "Enter user's Date Of Birth",
+                ["Plugins.Widgets.Crud.DateOfBirth.Hint"] = "Enter user's date Of birth",
                 ["Plugins.Widgets.Crud.Gender"] = "Gender",
                 ["Plugins.Widgets.Crud.Gender.Hint"] = "Enter user's gender",
                 ["Plugins.Widgets.Crud.Phone"] = "Phone",
                 ["Plugins.Widgets.Crud.Phone.Hint"] = "Entuser's phone",
                 ["Plugins.Widgets.Crud.SearchName"] = "Search name",
                 ["Plugins.Widgets.Crud.SearchGender"]= "Search gender",
-                ["Plugins.Widgets.Crud.SearchName.Hint"] = "Provide user Name",
+                ["Plugins.Widgets.Crud.SearchName.Hint"] = "Provide user name",
                 ["Plugins.Widgets.Crud.SearchGender.Hint"] = "Provide user gender",
                 ["Plugins.Widgets.Crud.SearchGenderSelection"] = "Search gender selection",
-                ["Plugins.Widgets.Crud.SearchGenderSelection.Hint"] = "Provide gender"
+                ["Plugins.Widgets.Crud.SearchGenderSelection.Hint"] = "Provide gender",
+                ["Plugins.Widgets.Crud.Fields.Picture"] = "Upload User's Picture"
+
 
             });
             await base.InstallAsync();

@@ -14,7 +14,8 @@ namespace Nop.Plugin.Widgets.UserInfo.Data.Mapping.Builders
             .WithColumn(nameof(User.DateOfBirth)).AsDate()
             .WithColumn(nameof(User.Gender)).AsString(10)
             .WithColumn(nameof(User.Phone)).AsString(10)
-            .WithColumn(nameof(User.CreationDate)).AsDate();
+            .WithColumn(nameof(User.CreationDate)).AsDate()
+            .WithColumn(nameof(User.PictureId)).AsInt32();
         }
     }
 

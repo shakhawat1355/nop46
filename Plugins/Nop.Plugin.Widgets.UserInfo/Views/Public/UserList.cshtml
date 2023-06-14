@@ -1,0 +1,85 @@
+﻿@using Nop.Plugin.Widgets.UserInfo.Domain;
+
+@{
+    Layout = "_ColumnsTwo";
+    //https://localhost:44369/images/thumbs/0000105_120.jpeg
+    //"https://localhost:44369/images/thumbs/0000106_Avatar_100"
+}
+
+@section left
+{
+    @await Component.InvokeAsync(typeof(CustomerNavigationViewComponent), new { selectedTabId = 1 })
+}
+
+@model List<UserModel>
+
+<div class="page account-page forum-subscriptions-page">
+    <div class="page-title">
+        <h1>List of Users</h1>
+    </div>
+
+    <div class="page-body">
+
+        <div class="table-wrapper">
+            <table class="data-table">
+                <colgroup>
+                    <col width="1" />
+                    <col width="1" />
+                    <col width="1" />
+                    <col width="1" />
+                    <col width="1" />
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th class="picture">
+                            Avatar
+                        </th>
+                        <th class="Name">
+                        @T("Plugins.Widgets.Crud.Name")
+                        </th>
+                        <th class="date">
+                         @T("Plugins.Widgets.Crud.DateOfBirth")
+                        </th>
+                        <th class="Gender">
+                        @T("Plugins.Widgets.Crud.Gender")
+                        </th>
+                        <th class="Phone">
+                         @T("Plugins.Widgets.Crud.Phone")
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                      
+                        <tr>
+                            <td class="image">
+                                <div class="image">
+                                    <img src="@(item.Url)" alt="avatar" />
+                                </div>
+                            </td>
+                            <td class="Name">
+                                @item.Name
+                            </td>
+                            <td class="date">
+                                @item.DateOfBirth.ToShortDateString()
+                            </td>
+                            <td class="Gender">
+                                @item.Gender
+                            </td>
+                            <td class="Phone">
+                                @item.Phone
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+
+
+
+
+ 
+    </div>
+</div>

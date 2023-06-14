@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using Nop.Web.Framework.Models;
 using Nop.Web.Framework.Mvc.ModelBinding;
+using Nop.Web.Models.Common;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -33,10 +34,15 @@ namespace Nop.Plugin.Widgets.UserInfo.Model
         [NopResourceDisplayName("User.CreationDate")]
         public DateTime CreationDate { get; set; }
 
+        [UIHint("Picture")]
+        [NopResourceDisplayName("Admin.Catalog.Categories.Fields.Picture")]
+        public int PictureId { get; set; }
 
-
+        public string Url { get; set; }
 
         public IList<SelectListItem> GenderSelection { get; set; }
+
+        public PagerModel PagerModel { get; set; }
 
 
 

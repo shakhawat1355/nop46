@@ -1,32 +1,32 @@
-﻿INSERT INTO dbo.[User] (Id,Name, DateOfBirth, Gender, Phone, CreationDate)
-VALUES (10,'John Doe', '1990-05-01', 'Male', '1234567890', '2023-05-29');
+﻿INSERT INTO dbo.[User] (Id, Name, DateOfBirth, Gender, Phone, CreationDate, PictureId)
+VALUES (10, 'John Doe', '1990-05-01', 'Male', '1234567890', '2023-05-29', 0);
 
-INSERT INTO dbo.[User] (Id, Name, DateOfBirth, Gender, Phone, CreationDate)
-VALUES (11, 'Jane Smith', '1985-10-15', 'Female', '9876543210', '2023-05-29');
+INSERT INTO dbo.[User] (Id, Name, DateOfBirth, Gender, Phone, CreationDate, PictureId)
+VALUES (11, 'Jane Smith', '1985-10-15', 'Female', '9876543210', '2023-05-29', 0);
 
-INSERT INTO dbo.[User] (Id, Name, DateOfBirth, Gender, Phone, CreationDate)
-VALUES (12, 'Michael Johnson', '1978-12-03', 'Male', '5555555555', '2023-05-29');
+INSERT INTO dbo.[User] (Id, Name, DateOfBirth, Gender, Phone, CreationDate, PictureId)
+VALUES (12, 'Michael Johnson', '1978-12-03', 'Male', '5555555555', '2023-05-29', 0);
 
-INSERT INTO dbo.[User] (Id, Name, DateOfBirth, Gender, Phone, CreationDate)
-VALUES (13, 'Emily Brown', '1992-07-22', 'Female', '6666666666', '2023-05-29');
+INSERT INTO dbo.[User] (Id, Name, DateOfBirth, Gender, Phone, CreationDate, PictureId)
+VALUES (13, 'Emily Brown', '1992-07-22', 'Female', '6666666666', '2023-05-29', 0);
 
-INSERT INTO dbo.[User] (Id, Name, DateOfBirth, Gender, Phone, CreationDate)
-VALUES (14, 'David Wilson', '1980-09-18', 'Male', '4444444444', '2023-05-29');
+INSERT INTO dbo.[User] (Id, Name, DateOfBirth, Gender, Phone, CreationDate, PictureId)
+VALUES (14, 'David Wilson', '1980-09-18', 'Male', '4444444444', '2023-05-29', 0);
 
-INSERT INTO dbo.[User] (Id, Name, DateOfBirth, Gender, Phone, CreationDate)
-VALUES (15, 'Sophia Davis', '1995-03-07', 'Female', '7777777777', '2023-05-29');
+INSERT INTO dbo.[User] (Id, Name, DateOfBirth, Gender, Phone, CreationDate, PictureId)
+VALUES (15, 'Sophia Davis', '1995-03-07', 'Female', '7777777777', '2023-05-29', 0);
 
-INSERT INTO dbo.[User] (Id, Name, DateOfBirth, Gender, Phone, CreationDate)
-VALUES (16, 'Matthew Anderson', '1987-06-12', 'Male', '2222222222', '2023-05-29');
+INSERT INTO dbo.[User] (Id, Name, DateOfBirth, Gender, Phone, CreationDate, PictureId)
+VALUES (16, 'Matthew Anderson', '1987-06-12', 'Male', '2222222222', '2023-05-29', 0);
 
-INSERT INTO dbo.[User] (Id, Name, DateOfBirth, Gender, Phone, CreationDate)
-VALUES (17, 'Olivia Taylor', '1998-11-25', 'Female', '9999999999', '2023-05-29');
+INSERT INTO dbo.[User] (Id, Name, DateOfBirth, Gender, Phone, CreationDate, PictureId)
+VALUES (17, 'Olivia Taylor', '1998-11-25', 'Female', '9999999999', '2023-05-29', 0);
 
-INSERT INTO dbo.[User] (Id, Name, DateOfBirth, Gender, Phone, CreationDate)
-VALUES (18, 'Daniel Martinez', '1982-04-14', 'Male', '1111111111', '2023-05-29');
+INSERT INTO dbo.[User] (Id, Name, DateOfBirth, Gender, Phone, CreationDate, PictureId)
+VALUES (18, 'Daniel Martinez', '1982-04-14', 'Male', '1111111111', '2023-05-29', 0);
 
-INSERT INTO dbo.[User] (Id, Name, DateOfBirth, Gender, Phone, CreationDate)
-VALUES (19, 'Ava Garcia', '1993-08-09', 'Female', '8888888888', '2023-05-29');
+INSERT INTO dbo.[User] (Id, Name, DateOfBirth, Gender, Phone, CreationDate, PictureId)
+VALUES (19, 'Ava Garcia', '1993-08-09', 'Female', '8888888888', '2023-05-29', 0);
 
 
 
