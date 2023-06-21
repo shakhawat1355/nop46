@@ -11,7 +11,7 @@
     @await Component.InvokeAsync(typeof(CustomerNavigationViewComponent), new { selectedTabId = 1 })
 }
 
-@model List<UserModel>
+@model UserListModel
 
 <div class="page account-page forum-subscriptions-page">
     <div class="page-title">
@@ -19,67 +19,74 @@
     </div>
 
     <div class="page-body">
-
-        <div class="table-wrapper">
-            <table class="data-table">
-                <colgroup>
-                    <col width="1" />
-                    <col width="1" />
-                    <col width="1" />
-                    <col width="1" />
-                    <col width="1" />
-                </colgroup>
-                <thead>
-                    <tr>
-                        <th class="picture">
-                            Avatar
-                        </th>
-                        <th class="Name">
-                        @T("Plugins.Widgets.Crud.Name")
-                        </th>
-                        <th class="date">
-                         @T("Plugins.Widgets.Crud.DateOfBirth")
-                        </th>
-                        <th class="Gender">
-                        @T("Plugins.Widgets.Crud.Gender")
-                        </th>
-                        <th class="Phone">
-                         @T("Plugins.Widgets.Crud.Phone")
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model)
-                    {
-                      
+        @if (Model.Users.Count > 0)
+        {
+            <div class="table-wrapper">
+                <table class="data-table">
+                    <colgroup>
+                        <col width="1" />
+                        <col width="1" />
+                        <col width="1" />
+                        <col width="1" />
+                        <col width="1" />
+                    </colgroup>
+                    <thead>
                         <tr>
-                            <td class="image">
-                                <div class="image">
-                                    <img src="@(item.Url)" alt="avatar" />
-                                </div>
-                            </td>
-                            <td class="Name">
-                                @item.Name
-                            </td>
-                            <td class="date">
-                                @item.DateOfBirth.ToShortDateString()
-                            </td>
-                            <td class="Gender">
-                                @item.Gender
-                            </td>
-                            <td class="Phone">
-                                @item.Phone
-                            </td>
+                            <th class="picture">
+                                Avatar
+                            </th>
+                            <th class="Name">
+                                @T("Plugins.Widgets.Crud.Name")
+                            </th>
+                            <th class="date">
+                                @T("Plugins.Widgets.Crud.DateOfBirth")
+                            </th>
+                            <th class="Gender">
+                                @T("Plugins.Widgets.Crud.Gender")
+                            </th>
+                            <th class="Phone">
+                                @T("Plugins.Widgets.Crud.Phone")
+                            </th>
                         </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Users)
+                        {
+
+                            <tr>
+                                <td class="image">
+                                    <div class="image">
+                                        <img src="@(item.Url)" alt="avatar" />
+                                    </div>
+                                </td>
+                                <td class="Name">
+                                    @item.Name
+                                </td>
+                                <td class="date">
+                                    @item.DateOfBirth.ToShortDateString()
+                                </td>
+                                <td class="Gender">
+                                    @item.Gender
+                                </td>
+                                <td class="Phone">
+                                    @item.Phone
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
 
 
+            var pager = await Html.PagerAsync(Model.PagerModel);
+            if (!string.IsNullOrEmpty(await pager.RenderHtmlContentAsync()))
+            {
+                <div class="pager">
+                    @pager
+                </div>
+            }
 
+        }
 
-
- 
     </div>
 </div>

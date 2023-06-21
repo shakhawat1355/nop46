@@ -15,19 +15,27 @@ using Nop.Web.Framework.Models.Extensions;
 using Nop.Plugin.Widgets.UserInfo.Areas.Admin.Service;
 using DocumentFormat.OpenXml.Spreadsheet;
 using Azure;
+using DocumentFormat.OpenXml.Office2010.ExcelAc;
+using Nop.Core.Domain.Catalog;
+using Nop.Web.Models.Catalog;
+using Nop.Web.Models.Common;
+using Nop.Services.Localization;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Nop.Plugin.Widgets.UserInfo.Factory
 {
     public class UserModelFactory : IUserModelFactory
     {
 
-        public IUserService _userService { get; set; }
+        private readonly IUserService _userService;
+        private readonly ILocalizationService _localizationService;
 
 
-        public UserModelFactory(IUserService userService)
+        public UserModelFactory(IUserService userService, ILocalizationService localizationService)
         {
 
             _userService = userService;
+            _localizationService = localizationService;
         }
 
 
@@ -134,7 +142,7 @@ namespace Nop.Plugin.Widgets.UserInfo.Factory
                 model.PictureId = user.PictureId;
             }
 
-            return model;
+            return  model;
 
         }
 
@@ -179,18 +187,49 @@ namespace Nop.Plugin.Widgets.UserInfo.Factory
             return searchModel;
         }
 
-        public async Task<IList<UserModel>> PreparePublicUserListModel(IList<User> Users)
+        public async Task<UserListModel> PreparePublicUserListModel(int? pageNumber)
         {
-            var models = new List<UserModel>();
+            var pageSize = 10;
+            var pageIndex = 0;
 
-            foreach(var user in Users)
+            if (pageNumber > 0)
+            {
+                pageIndex = pageNumber.Value - 1;
+            }
+
+            var userModels = new List<UserModel>();
+
+            var userList = await _userService.GetAllUsersAsync(pageIndex,pageSize);
+
+
+            foreach (var user in userList)
             {
                 var item = await PrepareUserModelEditAsync(user);
                 item.Url = ImgUrlBuilder(item.PictureId);
-                models.Add(item);
+                userModels.Add(item);
             }
 
-            return models;
+            //var model = PaginationBuilder(userModels, pageNumber);
+
+            var pagerModel = new PagerModel(_localizationService)
+            {
+                PageSize = 5,
+                TotalRecords = userList.Count,
+                PageIndex = 0,
+                ShowTotalSummary = false,
+                RouteActionName = "UserDetailViewerPaged",
+                UseRouteLinks = true,
+                RouteValues = new UserListModel.UserListRouteValues { PageNumber = pageIndex }
+            };
+
+            var model = new UserListModel
+            {
+                Users = userModels,
+                PagerModel = pagerModel
+            };
+
+
+            return model;
         }
 
         public string ImgUrlBuilder(int imgNo)
@@ -207,7 +246,36 @@ namespace Nop.Plugin.Widgets.UserInfo.Factory
             }
         }
 
+        public UserListModel PaginationBuilder(IList<UserModel> userModelList, int? pageNumber)
+        {
 
+            var pageIndex = 0;
+
+            if (pageNumber > 0)
+            {
+                pageIndex = pageNumber.Value - 1;
+            }
+            var pagerModel = new PagerModel(_localizationService)
+            {
+                PageSize = 5,
+                TotalRecords = userModelList.Count,
+                PageIndex = 0,
+                ShowTotalSummary = false,
+                RouteActionName = "UserDetailViewerPaged",
+                UseRouteLinks = true,
+                RouteValues = new UserListModel.UserListRouteValues { PageNumber = pageIndex }
+            };
+
+            var model = new UserListModel
+            {
+                Users = userModelList,
+                PagerModel = pagerModel
+            };
+
+
+
+            return model;
+        }
 
 
     }

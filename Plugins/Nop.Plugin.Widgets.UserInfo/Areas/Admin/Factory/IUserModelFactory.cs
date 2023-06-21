@@ -25,7 +25,7 @@ namespace Nop.Plugin.Widgets.UserInfo.Factory
 
         Task<UserItemListModel> PrepareUserListModelAsync(UserSearchModel searchModel);
 
-        Task<IList<UserModel>> PreparePublicUserListModel(IList<User> Users);
+        Task<UserListModel> PreparePublicUserListModel( int? pageNumber);
 
 
     }

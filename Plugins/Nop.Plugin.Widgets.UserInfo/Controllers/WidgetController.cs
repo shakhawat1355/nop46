@@ -28,17 +28,19 @@ namespace Nop.Plugin.Widgets.UserInfo.Controllers
 
 
 
-        public async Task<IActionResult> UserList()
+        public async Task<IActionResult> UserList(int? pageNumber)
         {
 
             if (!await _permissionService.AuthorizeAsync(StandardPermissionProvider.ManagePlugins))
                 return AccessDeniedView();
-            var model = await _userService.GetAllUsersAsync();
-            var model2 = await _userModelFactory.PreparePublicUserListModel(model);
+      
+            var model= await _userModelFactory.PreparePublicUserListModel(pageNumber);
 
 
-            return View("~/Plugins/Widgets.UserInfo/Views/Public/UserList.cshtml", model2);
+            return View("~/Plugins/Widgets.UserInfo/Views/Public/UserList.cshtml", model);
         }
+
+
 
 
     }

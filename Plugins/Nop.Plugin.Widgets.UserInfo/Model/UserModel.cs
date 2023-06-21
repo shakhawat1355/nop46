@@ -42,7 +42,7 @@ namespace Nop.Plugin.Widgets.UserInfo.Model
 
         public IList<SelectListItem> GenderSelection { get; set; }
 
-        public PagerModel PagerModel { get; set; }
+
 
 
 

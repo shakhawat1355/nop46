@@ -38,3 +38,45 @@ SELECT TOP (1000)
 ,[ResourceValue]
 [Languageld]
 FROM [nopdb].[dbo].[LocaleStringResource] where  ResourceName like 'Admin.Customers.Customers.List%'
+
+
+
+
+INSERT INTO dbo.[User] (Id, Name, DateOfBirth, Gender, Phone, CreationDate, PictureId)
+VALUES (100, 'Robert Smith', '1988-09-03', 'Male', '5555555555', '2023-05-29', 1);
+
+INSERT INTO dbo.[User] (Id, Name, DateOfBirth, Gender, Phone, CreationDate, PictureId)
+VALUES (101, 'Jessica Johnson', '1995-02-18', 'Female', '9999999999', '2023-05-29', 2);
+
+INSERT INTO dbo.[User] (Id, Name, DateOfBirth, Gender, Phone, CreationDate, PictureId)
+VALUES (102, 'William Davis', '1976-11-11', 'Male', '6666666666', '2023-05-29', 3);
+
+INSERT INTO dbo.[User] (Id, Name, DateOfBirth, Gender, Phone, CreationDate, PictureId)
+VALUES (103, 'Emma Wilson', '1989-07-02', 'Female', '4444444444', '2023-05-29', 4);
+
+INSERT INTO dbo.[User] (Id, Name, DateOfBirth, Gender, Phone, CreationDate, PictureId)
+VALUES (104, 'James Taylor', '1983-05-27', 'Male', '7777777777', '2023-05-29', 5);
+
+INSERT INTO dbo.[User] (Id, Name, DateOfBirth, Gender, Phone, CreationDate, PictureId)
+VALUES (105, 'Olivia Anderson', '1994-01-12', 'Female', '1111111111', '2023-05-29', 6);
+
+INSERT INTO dbo.[User] (Id, Name, DateOfBirth, Gender, Phone, CreationDate, PictureId)
+VALUES (106, 'Michael Brown', '1985-08-25', 'Male', '8888888888', '2023-05-29', 7);
+
+INSERT INTO dbo.[User] (Id, Name, DateOfBirth, Gender, Phone, CreationDate, PictureId)
+VALUES (107, 'Sophia Martinez', '1997-03-14', 'Female', '2222222222', '2023-05-29', 8);
+
+INSERT INTO dbo.[User] (Id, Name, DateOfBirth, Gender, Phone, CreationDate, PictureId)
+VALUES (108, 'Alexander Garcia', '1980-06-09', 'Male', '9999999999', '2023-05-29', 9);
+
+INSERT INTO dbo.[User] (Id, Name, DateOfBirth, Gender, Phone, CreationDate, PictureId)
+VALUES (109, 'Isabella Brown', '1992-12-04', 'Female', '7777777777', '2023-05-29', 10);
+
+
+
+
+
+
+
+
+
