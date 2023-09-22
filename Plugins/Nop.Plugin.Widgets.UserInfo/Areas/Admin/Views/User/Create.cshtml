@@ -1,0 +1,94 @@
+﻿@using Nop.Plugin.Widgets.UserInfo.Model;
+
+@model UserModel
+@await Component.InvokeAsync(typeof(StoreScopeConfigurationViewComponent))
+
+
+<form asp-controller="User" asp-action="Create" method="post">
+    <div class="content-header clearfix">
+        <h1 class="float-left">
+            @T("Plugins.Widgets.Crud.CreatePageTitle")
+            <small>
+                <i class="fas fa-arrow-circle-left"></i>
+                <a asp-action="List">@T("Plugins.Widgets.Crud.BackToList")</a>
+            </small>
+        </h1>
+        <div class="float-right">
+            <button type="submit" name="save" class="btn btn-primary">
+                <i class="far fa-save"></i>
+                @T("Admin.Common.Save")
+            </button>
+
+        </div>
+    </div>
+
+
+
+
+
+    <div asp-validation-summary="ModelOnly"></div>
+    <input asp-for="Id" type="hidden" />
+
+    <section class="content">
+        <div class="container-fluid">
+            <div class="form-horizontal">
+                <div class="cards-group">
+                    @await Component.InvokeAsync(typeof(AdminWidgetViewComponent), new { widgetZone = AdminWidgetZones.EmailAccountDetailsTop, additionalData = Model })
+                    <div class="card card-default">
+                        <div class="card-body">
+                            <div class="form-group row" id="display-name-area">
+                                <div class="col-md-2">
+                                    <nop-label asp-for="Name" />
+                                </div>
+                                <div class="col-md-8">
+                                    <nop-editor asp-for="Name" asp-required="true" data-tooltip="This is a text input field." />
+                                    <span asp-validation-for="Name"></span>
+                                </div>
+                            </div>
+                            <div class="form-group advanced-setting row">
+                                <div class="col-md-2">
+                                    <nop-label asp-for="PictureId" />
+                                </div>
+                                <div class="col-md-8">
+                                    <nop-editor asp-for="PictureId" />
+                                    <span asp-validation-for="PictureId"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row" id="">
+                                <div class="col-md-2">
+                                    <nop-label asp-for="DateOfBirth" />
+                                </div>
+                                <div class="col-md-10">
+                                    <nop-editor asp-for="DateOfBirth" asp-required="true" />
+                                    <span asp-validation-for="DateOfBirth"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-2">
+                                    <nop-label asp-for="Gender" />
+                                </div>
+                                <div class="col-md-4">
+                                    <nop-select asp-for="Gender" asp-items="Model.GenderSelection" />
+                                </div>
+                            </div>
+                            <div class="form-group row" id="">
+                                <div class="col-md-2">
+                                    <nop-label asp-for="Phone" />
+                                </div>
+                                <div class="col-md-8">
+                                    <nop-editor asp-for="Phone" asp-required="true" />
+                                    <span asp-validation-for="Phone"></span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    @*@await Component.InvokeAsync(typeof(AdminWidgetViewComponent), new { widgetZone = AdminWidgetZones.EmailAccountDetailsBottom, additionalData = Model })*@
+                </div>
+            </div>
+        </div>
+    </section>
+</form>
+
+

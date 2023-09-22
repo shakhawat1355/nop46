@@ -1,0 +1,86 @@
+﻿@using Nop.Plugin.Widgets.UserInfo.Domain;
+
+
+@await Component.InvokeAsync(typeof(StoreScopeConfigurationViewComponent))
+
+@model List<User>
+
+<div class="container">
+
+    <div class="content-header clearfix">
+        <h1 class="float-left">
+            @T("Plugins.Widgets.Crud.IndexPageTitle")
+        </h1>
+        <div class="float-right">
+            <a asp-controller="User" asp-action="Create" class="btn btn-primary"> 
+                <i class="fas fa-plus-square"></i>
+                @T("Admin.Common.AddNew")
+            </a>
+        </div>
+    </div>
+    <div class="row">
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+        </div>
+    </div>
+
+
+    <section class="content">
+        <div class="container-fluid">
+            <div class="form-horizontal">
+                <div class="cards-group">
+                    <div class="card card-default card-search">
+                        <div class="card-body">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Date of Birth</th>
+                                        <th>Gender</th>
+                                        <th>Phone</th>
+                                        <th>Edit</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+
+                                    @foreach (var user in Model)
+                                    {
+                                        <tr>
+                                            <td>@user.Name</td>
+                                            <td>@user.DateOfBirth.ToString("yyyy-MM-dd")</td>
+                                            <td>@user.Gender</td>
+                                            <td>@user.Phone</td>
+                                            <td>
+                                                <a asp-controller="User" asp-action="Edit" asp-route-id="@user.Id"
+                                                   class="btn btn-default">
+                                                    <i class="fas fa-pencil-alt"></i>
+                                                    @T("Plugins.Widgets.Crud.EditButton")
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+
+</div>
+
+

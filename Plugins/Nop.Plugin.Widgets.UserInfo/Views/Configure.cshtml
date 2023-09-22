@@ -1,0 +1,68 @@
+﻿
+
+@{
+    Layout = "_AdminLayout";
+}
+
+@await Component.InvokeAsync(typeof(StoreScopeConfigurationViewComponent))
+
+
+
+<div class="content-header clearfix">
+    <h1 class="float-left">
+        @T("Admin.NopStation.Announcement.AnnouncementItems.List")
+    </h1>
+    <div class="float-right">
+        <a asp-action="Create" class="btn btn-primary">
+            <i class="fas fa-plus-square"></i>
+            @T("Admin.Common.AddNew")
+        </a>
+    </div>
+</div>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="form-horizontal">
+            <div class="cards-group">
+                <div class="card card-default">
+                    <div class="card-body">
+@*                        @await Html.PartialAsync("Table", new DataTablesModel
+                        {
+                        Name = "Test-grid",
+                        UrlRead = new DataUrl("Configure", "User", null),
+                        Length = Model.PageSize,
+                        LengthMenu = Model.AvailablePageSizes,
+                        ColumnCollection = new List<ColumnProperty>
+                        {
+                        new ColumnProperty(nameof(AnnouncementItemModel.Name))
+                        {
+                        Title ="Name",
+                        Width = "150"
+                        },
+                        new ColumnProperty(nameof(AnnouncementItemModel.DisplayOrder))
+                        {
+                        Title = "Date of Birth",
+                        Width = "100"
+                        },
+                        new ColumnProperty(nameof(AnnouncementItemModel.Active))
+                        {
+                        Title = "Gender",
+                        Width = "100",
+                        Render = new RenderBoolean(),
+                        ClassName = NopColumnClassDefaults.CenterAll
+                        },
+                        new ColumnProperty(nameof(AnnouncementItemModel.Id))
+                        {
+                        Title = "Phone",
+                        Width = "100",
+                        ClassName =  NopColumnClassDefaults.Button,
+                        Render = new RenderButtonEdit(new DataUrl("Edit"))
+                        }
+                        }
+                        })*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
