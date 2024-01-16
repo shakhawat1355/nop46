@@ -18,8 +18,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Content\facebookstyles.css" />
-    <None Remove="Content\Images\facebook_logo.png" />
+    <None Remove="Content\googlestyles.css" />
+    <None Remove="Content\Images\google_logo.png" />
     <None Remove="logo.jpg" />
     <None Remove="plugin.json" />
     <None Remove="Views\Configure.cshtml" />
@@ -28,10 +28,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Content\facebookstyles.css">
+    <Content Include="Content\googlestyles.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Images\facebook_logo.png">
+    <Content Include="Content\Images\google_logo.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="logo.jpg">
